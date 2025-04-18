@@ -12,7 +12,11 @@ export const router = createBrowserRouter([
         errorElement: <Error></Error>,
 
         children: [
-            { index: true, element: <Home></Home> },
+            {
+                index: true,
+                loader: () => fetch('booksData.json'),
+                element: <Home></Home>
+            },
             { path: 'about', element: <div>hi im about</div> },
             { path: 'book', element: <div>hi im read</div> },
         ]
