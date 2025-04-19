@@ -1,5 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router';
+import Swal from 'sweetalert2'
+// import withReactContent from 'sweetalert2-react-content'
+
+// const MySwal = withReactContent(Swal)
+
+const handleWorkinProgress = () => {
+    Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        footer: '<p>Work in Progress</p>'
+    });
+}
+
 
 const Navbar = () => {
     const links =
@@ -23,7 +37,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <p className="text-3xl font-bold">Book Vibe</p>
+                    <NavLink to='/' className={({ isActive }) => isActive ? '' : ''}><p className="text-3xl font-bold">Book Vibe</p></NavLink>
                 </div>
 
                 <div className="navbar-center hidden lg:flex">
@@ -33,8 +47,8 @@ const Navbar = () => {
                 </div>
 
                 <div className="navbar-end gap-4">
-                    <a className="btn btn-success text-white py-5">Sign In</a>
-                    <a className="btn btn-accent text-white py-5">Sign Up</a>
+                    <p onClick={handleWorkinProgress} className="btn btn-success text-white py-5">Sign In</p>
+                    <p onClick={handleWorkinProgress} className="btn btn-accent text-white py-5">Sign Up</p>
                 </div>
             </div>
         </div>

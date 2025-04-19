@@ -16,13 +16,21 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 loader: () => fetch('booksData.json'),
-                element: <Home></Home>
+                element: <Home></Home>,
+                hydrateFallbackElement: <div className="skeleton h-32 w-32"></div>
             },
+
             { path: 'about', element: <div>hi im about</div> },
             {
                 path: 'bookDetails/:id',
                 loader: () => fetch('../booksData.json'),
                 Component: BookDetails,
+                hydrateFallbackElement: <div className="flex w-52 flex-col gap-4">
+                    <div className="skeleton h-32 w-full"></div>
+                    <div className="skeleton h-4 w-28"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                    <div className="skeleton h-4 w-full"></div>
+                </div>
             },
         ]
     },

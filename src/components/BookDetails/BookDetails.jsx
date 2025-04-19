@@ -1,5 +1,7 @@
 import React from 'react';
-import { useLoaderData, useParams } from 'react-router';
+import { NavLink, useLoaderData, useParams } from 'react-router';
+// import { useNavigate } from 'react-router';
+import { addToStoredDB } from '../utility/addtoDB';
 
 const BookDetails = () => {
     const { id } = useParams();
@@ -10,6 +12,13 @@ const BookDetails = () => {
     const book = books.find(book => book.bookId === Bookid);
 
     const { bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = book;
+    // const navigate = useNavigate();
+
+    const handleMarkAsRead = (id) => {
+        addToStoredDB(id); // Call the function to add the book ID to local storage
+        console.log(id);
+        // navigate(-1); // Go back to the previous page
+    }
 
     return (
         <div>
@@ -60,8 +69,10 @@ const BookDetails = () => {
                     </table>
 
                     <div className='flex gap-2 my-5'>
-                        <button className='btn py-7 px-10 text-xl font-bold'>Read</button>
-                        <button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Wishlist</button>
+                        {/* <NavLink to={`/bookDetails/${Bookid - 1}`}><button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Previous</button></NavLink>
+                        <NavLink to={`/bookDetails/${Bookid + 1}`}><button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Next</button></NavLink> */}
+                        <button onClick={() => handleMarkAsRead(id)} className='btn py-7 px-10 text-xl font-bold'>Mark As Read</button>
+                        <button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Add to Wishlist</button>
                     </div>
 
                 </div>
