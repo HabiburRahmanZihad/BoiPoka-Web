@@ -1,5 +1,6 @@
 import React from 'react';
 import bookhero from '../../assets/bookhero.png';
+import { NavLink } from 'react-router';
 const HeroBanner = () => {
     return (
         <div>
@@ -13,7 +14,7 @@ const HeroBanner = () => {
                     </div>
                     <div className='space-y-12 max-w-3/6'>
                         <h1 className="text-6xl font-extrabold playfair">Books to freshen up your bookshelf</h1>
-                        <button className="btn bg-[#23BE0A] text-white p-8 rounded-xl text-xl">View The List</button>
+                        <NavLink to='/listedbook'><button className="btn bg-[#23BE0A] text-white p-8 rounded-xl text-xl">View The List</button></NavLink>
                     </div>
                 </div>
             </div>

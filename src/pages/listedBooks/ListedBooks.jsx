@@ -50,6 +50,7 @@ const ListedBooks = () => {
     }
 
 
+
     return (
         <div>
             <div className='text-center my-10 bg-[rgba(19,19,19,0.05)]rounded-lg py-10'>
@@ -82,6 +83,13 @@ const ListedBooks = () => {
                     </TabList>
 
                     <TabPanel>
+                        {
+                            displayBooks.length === 0 ? <div className='text-center my-10 bg-[rgba(19,19,19,0.05)]rounded-lg py-10'>
+                                <h1 className='text-5xl font-bold playfair'>
+                                    No Books Found
+                                </h1>
+                            </div> : <></>
+                        }
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                             {
                                 displayBooks.map(book => <Book book={book} key={book.bookId}></Book>)
@@ -90,12 +98,20 @@ const ListedBooks = () => {
                     </TabPanel>
 
                     <TabPanel>
+                        {
+                            wishBook.length === 0 ? <div className='text-center my-10 bg-[rgba(19,19,19,0.05)]rounded-lg py-10'>
+                                <h1 className='text-5xl font-bold playfair'>
+                                    No Books Found
+                                </h1>
+                            </div> : <></>
+                        }
                         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                             {
                                 wishBook.map(book => <Book book={book} key={book.bookId}></Book>)
                             }
                         </div>
                     </TabPanel>
+
                 </Tabs>
             </div>
 
