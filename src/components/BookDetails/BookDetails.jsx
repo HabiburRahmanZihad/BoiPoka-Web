@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink, useLoaderData, useParams } from 'react-router';
 // import { useNavigate } from 'react-router';
-import { addFavorite, } from '../utility/addtoDB';
+import { addFavorite, addToWishlist, } from '../utility/addtoDB';
 
 const BookDetails = () => {
     const { id } = useParams(); // Extracting the book ID from the URL parameters "loader"
@@ -16,6 +16,10 @@ const BookDetails = () => {
 
     const handleMarkAsRead = (book) => {
         addFavorite(book);
+    }
+
+    const handleAddToWishlist = (book) => {
+        addToWishlist(book);
     }
 
     return (
@@ -70,7 +74,9 @@ const BookDetails = () => {
                         {/* <NavLink to={`/bookDetails/${Bookid - 1}`}><button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Previous</button></NavLink>
                         <NavLink to={`/bookDetails/${Bookid + 1}`}><button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Next</button></NavLink> */}
                         <button onClick={() => handleMarkAsRead(book)} className='btn py-7 px-10 text-xl font-bold'>Mark As Read</button>
-                        <button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Add to Wishlist</button>
+
+                        <button onClick={() => handleAddToWishlist(book)}
+                            className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Add to Wishlist</button>
                     </div>
 
                 </div>

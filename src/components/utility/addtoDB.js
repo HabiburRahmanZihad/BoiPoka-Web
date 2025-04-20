@@ -21,3 +21,25 @@ export const addFavorite = book => {
     markAsRead.push(book);
     localStorage.setItem('markAsRead', JSON.stringify(markAsRead));
 }
+
+export const getWishlist = () => {
+    const wishlist = localStorage.getItem('wishlist')
+    // if (wishlist) return JSON.parse(wishlist);
+    // retutn[];
+    if (wishlist) {
+        return JSON.parse(wishlist);
+    } else {
+        return [];
+    }
+}
+
+export const addToWishlist = book => {
+    const wishlist = getWishlist();
+    const isExists = wishlist.find(b => b.bookId === book.bookId);
+    if (isExists) {
+        alert('Already added to wishlist')
+        return;
+    }
+    wishlist.push(book);
+    localStorage.setItem('wishlist', JSON.stringify(wishlist));
+}
