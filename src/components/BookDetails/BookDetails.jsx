@@ -1,11 +1,11 @@
 import React from 'react';
 import { NavLink, useLoaderData, useParams } from 'react-router';
 // import { useNavigate } from 'react-router';
-import { addToStoredDB } from '../utility/addtoDB';
+import { addFavorite, } from '../utility/addtoDB';
 
 const BookDetails = () => {
-    const { id } = useParams();
-    const Bookid = parseInt(id);
+    const { id } = useParams(); // Extracting the book ID from the URL parameters "loader"
+    const Bookid = parseInt(id); // Convert the ID to an integer
 
     const books = useLoaderData();
 
@@ -14,10 +14,8 @@ const BookDetails = () => {
     const { bookName, author, image, review, totalPages, rating, category, tags, publisher, yearOfPublishing } = book;
     // const navigate = useNavigate();
 
-    const handleMarkAsRead = (id) => {
-        addToStoredDB(id); // Call the function to add the book ID to local storage
-        console.log(id);
-        // navigate(-1); // Go back to the previous page
+    const handleMarkAsRead = (book) => {
+        addFavorite(book);
     }
 
     return (
@@ -71,7 +69,7 @@ const BookDetails = () => {
                     <div className='flex gap-2 my-5'>
                         {/* <NavLink to={`/bookDetails/${Bookid - 1}`}><button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Previous</button></NavLink>
                         <NavLink to={`/bookDetails/${Bookid + 1}`}><button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Next</button></NavLink> */}
-                        <button onClick={() => handleMarkAsRead(id)} className='btn py-7 px-10 text-xl font-bold'>Mark As Read</button>
+                        <button onClick={() => handleMarkAsRead(book)} className='btn py-7 px-10 text-xl font-bold'>Mark As Read</button>
                         <button className='btn py-7 px-10 text-xl font-bold text-white bg-[#50B1C9]'>Add to Wishlist</button>
                     </div>
 

@@ -1,10 +1,10 @@
 import React from 'react';
-
 import { createBrowserRouter } from "react-router";
 import Root from '../pages/Root/Root';
 import Error from '../pages/ErrorPage/Error';
 import Home from '../pages/Home/Home';
 import BookDetails from '../components/BookDetails/BookDetails';
+import ListedBooks from '../pages/listedBooks/ListedBooks';
 
 export const router = createBrowserRouter([
     {
@@ -15,12 +15,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                loader: () => fetch('booksData.json'),
+                loader: () => fetch('../booksData.json'),
                 element: <Home></Home>,
                 hydrateFallbackElement: <div className="skeleton h-32 w-32"></div>
             },
 
-            { path: 'about', element: <div>hi im about</div> },
             {
                 path: 'bookDetails/:id',
                 loader: () => fetch('../booksData.json'),
@@ -31,6 +30,13 @@ export const router = createBrowserRouter([
                     <div className="skeleton h-4 w-full"></div>
                     <div className="skeleton h-4 w-full"></div>
                 </div>
+            },
+            
+            {
+                path: 'listedbook',
+                loader: () => fetch('../booksData.json'),
+                Component: ListedBooks,
+                hydrateFallbackElement: <div className="skeleton h-32 w-32"></div>
             },
         ]
     },

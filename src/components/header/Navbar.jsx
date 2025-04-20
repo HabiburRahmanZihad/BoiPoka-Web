@@ -19,7 +19,7 @@ const Navbar = () => {
     const links =
         <>
             <li className='text-xl'><NavLink to='/'>Home</NavLink></li>
-            <li className='text-xl'><NavLink to='/about'>Listed Books</NavLink></li>
+            <li className='text-xl'><NavLink to='/listedbook'>Listed Books</NavLink></li>
             <li className='text-xl'><NavLink to='/book'>Pages to Read</NavLink></li>
         </>;
 
@@ -37,7 +37,7 @@ const Navbar = () => {
                             {links}
                         </ul>
                     </div>
-                    <NavLink to='/' className={({ isActive }) => isActive ? '' : ''}><p className="text-3xl font-bold">Book Vibe</p></NavLink>
+                    <NavLink to='/' className={({ isActive }) => isActive ? '' : ''}><p className="text-3xl font-bold playfair">Boi Poka</p></NavLink>
                 </div>
 
                 <div className="navbar-center hidden lg:flex">

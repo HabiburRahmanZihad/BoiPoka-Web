@@ -1,32 +1,23 @@
-const getStoredBook = () => {
-    
-    const storedBookSTR = localStorage.getItem("readList");
-
-    if (storedBookSTR) {
-        const storedBookData = JSON.parse(storedBookSTR);
-        return storedBookData;
-    }
-    else {
+export const getMarkAsRead = () => {
+    const markAsRead = localStorage.getItem('markAsRead')
+    // if (markAsRead) return JSON.parse(markAsRead);
+    // retutn[];
+    if (markAsRead) {
+        return JSON.parse(markAsRead);
+    } else {
         return [];
     }
-
 }
 
-const addToStoredDB = (id) => {
-    
-    const storedBookData = getStoredBook();
 
-    if (storedBookData.includes(id)) {
-        // console.log("hello")
-        alert("bhai ei id already exist ")
+
+export const addFavorite = book => {
+    const markAsRead = getMarkAsRead();
+    const isExists = markAsRead.find(b => b.bookId === book.bookId);
+    if (isExists) {
+        alert('Already added to mark as read list')
+        return;
     }
-    else {
-        storedBookData.push(id);
-        const data = JSON.stringify(storedBookData);
-        localStorage.setItem("readList",data)
-
-    }
-
+    markAsRead.push(book);
+    localStorage.setItem('markAsRead', JSON.stringify(markAsRead));
 }
-
-export { addToStoredDB,getStoredBook };
