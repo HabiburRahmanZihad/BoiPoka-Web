@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Readbook from '../../components/Readbook/Readbook';
 import WishlistBook from '../../components/WishlistBook/WishlistBook';
-// import { useLoaderData } from 'react-router';
 import { getMarkAsRead } from '../../components/utility/addtoDB';
-
+import Book from '../../components/Book/Book';
 
 
 
 const ListedBooks = () => {
-    // const data = useLoaderData();
     const [displayBooks, setDisplayBooks] = React.useState([]);
     const [sort, setSort] = useState('');
 
@@ -19,20 +16,19 @@ const ListedBooks = () => {
         setDisplayBooks(savedbooks);
     }, []);
 
-    console.log(displayBooks);
 
     const handleSort = (type) => {
-        // console.log(type);
         setSort(type);
+
         let sortedBooks = [];
-        if (type === 'Pages') {
-            sortedBooks = [...displayBooks].sort((a, b) => b.totalPages - a.totalPages);
+        if (type === 'Reset') {
+            sortedBooks = displayBooks;
         }
-        if (type === 'Rating') {
+        else if (type === 'pages') {
+            sortedBooks = [...displayBooks].sort((a, b) => a.totalPages - b.totalPages);
+        }
+        else if (type === 'rating') {
             sortedBooks = [...displayBooks].sort((a, b) => b.rating - a.rating);
-        }
-        else {
-            sortedBooks = [...displayBooks];
         }
         setDisplayBooks(sortedBooks);
     }
@@ -53,9 +49,9 @@ const ListedBooks = () => {
 
                     <ul className="menu dropdown-content bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
 
-                        <li><a onClick={() => handleSort('Pages')}>pages</a></li>
+                        <li><a onClick={() => handleSort('pages')}>pages</a></li>
 
-                        <li><a onClick={() => handleSort('Rating')}>rating</a></li>
+                        <li><a onClick={() => handleSort('rating')}>rating</a></li>
 
 
                     </ul>
@@ -70,7 +66,13 @@ const ListedBooks = () => {
                     </TabList>
 
                     <TabPanel>
-                        <Readbook></Readbook>
+                        {/* <Readbook></Readbook> */}
+                        <p>hello</p>
+                        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                            {
+                                displayBooks.map(book => <Book book={book} key={book.bookId}></Book>)
+                            }
+                        </div>
                     </TabPanel>
                     <TabPanel>
                         <WishlistBook></WishlistBook>

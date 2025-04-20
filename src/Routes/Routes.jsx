@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
                     <div className="skeleton h-4 w-full"></div>
                 </div>
             },
-            
+
             {
                 path: 'listedbook',
                 loader: () => fetch('../booksData.json'),
