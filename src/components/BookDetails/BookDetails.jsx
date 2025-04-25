@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, useLoaderData, useParams } from 'react-router';
 // import { useNavigate } from 'react-router';
 import { addFavorite, addToWishlist, } from '../utility/addtoDB';
+import { Helmet } from 'react-helmet-async';
 
 const BookDetails = () => {
     const { id } = useParams(); // Extracting the book ID from the URL parameters "loader"
@@ -24,6 +25,9 @@ const BookDetails = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>{bookName ?? "Boipoka Book Vibe"}</title>
+            </Helmet>
             <div className="min-h-[700px]  rounded lg:flex gap-10 space-y-5 lg:space-y-0 p-2 md:p-2">
 
                 {/* Card 01 */}

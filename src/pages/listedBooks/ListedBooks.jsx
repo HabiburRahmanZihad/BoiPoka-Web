@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { getMarkAsRead, getWishlist } from '../../components/utility/addtoDB';
 import Book from '../../components/Book/Book';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -53,6 +54,11 @@ const ListedBooks = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Listed Books</title>
+                <meta name="description" content="Listed Books" />
+                <link rel="canonical" href="/listedbook" />
+            </Helmet>
             <div className='text-center my-10 bg-[rgba(19,19,19,0.05)]rounded-lg py-10'>
                 <h1 className='text-5xl font-bold playfair'>
                     BooKs
